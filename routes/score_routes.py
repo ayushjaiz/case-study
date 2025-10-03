@@ -30,16 +30,20 @@ def calculate_score():
         score = SustainabilityScorer.calculate_score(product_data, weights)
         rating = SustainabilityScorer.get_rating(score)
         
-        # Generate suggestions
-        basic_suggestions = SustainabilityScorer.generate_suggestions(product_data, score)
-        ai_suggestions = ai_service.generate_insights(product_data, score, rating)
+        # Generate AI suggestions using structured output
+        try:
+            suggestions = ai_service.generate_suggestions(product_data, score, rating)
+        except Exception:
+            suggestions = []
         
-        # Combine suggestions (prefer AI, fallback to basic)
-        suggestions = ai_suggestions if ai_suggestions else basic_suggestions
+        # Fallback to basic suggestions if AI fails
+        if not suggestions:
+            suggestions = SustainabilityScorer.generate_suggestions(product_data, score)
         
         # Store submission
         submission = storage.add_submission(product_data, score, rating, suggestions)
         
+        # Simple response with only required keys
         response = {
             'product_name': product_data['product_name'],
             'sustainability_score': round(score, 1),

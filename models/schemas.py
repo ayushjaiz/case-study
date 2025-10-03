@@ -1,4 +1,6 @@
 from marshmallow import Schema, fields, validate, ValidationError
+from pydantic import BaseModel, Field
+from typing import List
 
 class ProductSchema(Schema):
     product_name = fields.Str(required=True, validate=validate.Length(min=1, max=100))
@@ -19,3 +21,13 @@ class WeightsSchema(Schema):
         total = data.get('gwp_weight', 0.4) + data.get('circularity_weight', 0.3) + data.get('cost_weight', 0.3)
         if abs(total - 1.0) > 0.01:
             raise ValidationError("Weights must sum to 1.0")
+
+# Pydantic model for AI structured output
+class SuggestionsList(BaseModel):
+    """List of sustainability suggestions from AI using structured output"""
+    suggestions: List[str] = Field(
+        ..., 
+        description="List of 2-3 specific actionable suggestions to improve sustainability", 
+        min_length=2, 
+        max_length=3
+    )

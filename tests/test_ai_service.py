@@ -21,22 +21,13 @@ class TestAIService(unittest.TestCase):
         """Test that AIService initializes correctly"""
         self.assertIsNotNone(self.ai_service.client)
     
-    @patch.dict(os.environ, {'GEMINI_API_KEY': 'test-key'})
-    def test_generate_suggestions_fallback(self):
-        """Test that fallback suggestions are returned when API fails"""
-        # This will use the fallback since we don't have a real API key
-        suggestions = self.ai_service.generate_suggestions(
-            self.sample_product, 72.5, 'B'
-        )
-        
-        self.assertIsInstance(suggestions, list)
-        self.assertGreaterEqual(len(suggestions), 2)
-        self.assertLessEqual(len(suggestions), 3)
-        
-        # Check that all suggestions are strings
-        for suggestion in suggestions:
-            self.assertIsInstance(suggestion, str)
-            self.assertGreater(len(suggestion), 0)
+    def test_generate_suggestions_requires_api_key(self):
+        """Test that AI service requires valid API key"""
+        # Without proper API key, the service should raise an exception
+        with self.assertRaises(Exception):
+            self.ai_service.generate_suggestions(
+                self.sample_product, 72.5, 'B'
+            )
     
     @patch('services.ai_service.genai.Client')
     def test_generate_suggestions_success(self, mock_client_class):

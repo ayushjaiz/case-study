@@ -18,12 +18,8 @@
 
 ## Project Features
 
-- **Sustainability Scoring**: Calculate comprehensive sustainability scores based on materials, transport, packaging, and environmental factors
+- **Sustainability Scoring**: Calculate comprehensive sustainability scores and suggestions based on materials, transport, packaging, and environmental factors
 - **AI-Powered Suggestions**: Generate contextual improvement recommendations using Google Gemini with structured output
-- **Product History**: Track and retrieve historical product submissions and scores
-- **Analytics Dashboard**: View aggregated statistics and trends across all assessed products
-- **Configurable Weights**: Customize scoring weights for GWP, Circularity, and Cost factors
-- **Input Validation**: Robust data validation with detailed error handling
 
 ---
 
@@ -31,7 +27,7 @@
 
 - **Backend**: Python, Flask
 - **AI Integration**: Google Gemini 2.5 Flash with Structured Output
-- **Data Storage**: In-memory storage (easily extendable to databases)
+- **Data Storage**: In-memory storage
 - **Testing**: PyTest, unittest
 
 ---
@@ -53,7 +49,7 @@
 
 - Python 3.8+
 - pip
-- Google Gemini API Key (optional, for AI suggestions)
+- Google Gemini API Key
 
 ### Environment Variables
 
@@ -166,8 +162,7 @@ Get aggregated analytics across all products.
 
 - Lightweight and flexible for API development
 - Excellent ecosystem for data processing and AI integration
-- Easy deployment and scaling options
-- Strong community support
+
 
 ### Why Google Gemini with Structured Output?
 
@@ -180,15 +175,10 @@ Get aggregated analytics across all products.
 
 - Type safety and runtime validation
 - Automatic JSON schema generation
-- Integration with modern Python type hints
-- Better error messages for debugging
 
 ### Why In-Memory Storage?
 
 - Fast read/write operations for prototyping
-- No external database dependencies
-- Easy to replace with persistent storage (PostgreSQL, MongoDB)
-- Sufficient for current scale requirements
 
 ---
 
@@ -206,13 +196,13 @@ The sustainability score is calculated using a weighted combination of:
 
 - Uses Google Gemini 2.5 Flash with structured output
 - Generates 2-3 contextual improvement suggestions
-- Fallback to rule-based suggestions if AI is unavailable
+- Requires valid GEMINI_API_KEY for operation
 - Structured output ensures consistent response format
 
 ### Project Structure
 
 ```
-case-study-2/
+case-study/
 ├── app.py                    # Main Flask application
 ├── config.py                # Scoring configuration and constants
 ├── requirements.txt         # Python dependencies
@@ -254,13 +244,6 @@ python -m pytest tests/test_ai_service.py -v
 python -m pytest tests/test_integration.py -v
 ```
 
-Test coverage includes:
-- API endpoint functionality
-- Data validation and error handling
-- Scoring algorithm accuracy
-- AI service integration and fallbacks
-- End-to-end workflow validation
-
 ---
 
 ## Acknowledgements
@@ -273,4 +256,4 @@ This project was completed with the assistance of various online resources and d
 
 ### What was the challenging part of the assignment?
 
-- **AI Integration**: Implementing reliable AI suggestions with proper fallback mechanisms and structured output validation
+- **AI Integration**: Implementing reliable AI suggestions with structured output

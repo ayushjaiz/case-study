@@ -31,14 +31,7 @@ def calculate_score():
         rating = SustainabilityScorer.get_rating(score)
         
         # Generate AI suggestions using structured output
-        try:
-            suggestions = ai_service.generate_suggestions(product_data, score, rating)
-        except Exception:
-            suggestions = []
-        
-        # Fallback to basic suggestions if AI fails
-        if not suggestions:
-            suggestions = SustainabilityScorer.generate_suggestions(product_data, score)
+        suggestions = ai_service.generate_suggestions(product_data, score, rating)
         
         # Store submission
         submission = storage.add_submission(product_data, score, rating, suggestions)

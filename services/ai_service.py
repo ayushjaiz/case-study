@@ -34,20 +34,12 @@ class AIService:
         Examples: "Use recycled materials", "Switch to rail transport", "Reduce packaging"
         """
         
-        try:
-            response = self.client.models.generate_content(
-                model='gemini-2.5-flash',
-                contents=prompt,
-                config={
-                    'response_mime_type': 'application/json',
-                    'response_schema': SuggestionsList,
-                }
-            )
-            return response.parsed.suggestions
-        except Exception:
-            # Fallback to basic suggestions
-            return [
-                "Use eco-friendly materials",
-                "Optimize transportation",
-                "Improve packaging sustainability"
-            ]
+        response = self.client.models.generate_content(
+            model='gemini-2.5-flash',
+            contents=prompt,
+            config={
+                'response_mime_type': 'application/json',
+                'response_schema': SuggestionsList,
+            }
+        )
+        return response.parsed.suggestions

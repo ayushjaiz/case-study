@@ -26,11 +26,7 @@ class TestSustainabilityScorer(unittest.TestCase):
         self.assertEqual(SustainabilityScorer.get_rating(50), 'C')
         self.assertEqual(SustainabilityScorer.get_rating(30), 'D')
     
-    def test_generate_suggestions(self):
-        suggestions = SustainabilityScorer.generate_suggestions(self.sample_product, 70)
-        self.assertIsInstance(suggestions, list)
-        self.assertLessEqual(len(suggestions), 4)
-    
+
     def test_material_penalties(self):
         plastic_product = self.sample_product.copy()
         plastic_product['materials'] = ['plastic']

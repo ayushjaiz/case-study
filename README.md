@@ -11,7 +11,7 @@
 - [Environment Variables](#environment-variables)
 - [API Endpoints and Sample Requests](#api-endpoints-and-sample-requests)
 - [Development Choices](#development-choices)
-- [Testing](#testing)
+- [Architecture](#architecture)
 - [Acknowledgements](#acknowledgements)
 
 ---
@@ -28,7 +28,6 @@
 - **Backend**: Python, Flask
 - **AI Integration**: Google Gemini 2.5 Flash with Structured Output
 - **Data Storage**: In-memory storage
-- **Testing**: PyTest, unittest
 
 ---
 
@@ -38,7 +37,6 @@
 - **google-genai**: Google Gemini API client for AI-powered structured output
 - **marshmallow**: Data serialization and validation
 - **pydantic**: Data validation and settings management with type hints
-- **pytest**: Testing framework for comprehensive test coverage
 - **gunicorn**: WSGI HTTP server for production deployment
 
 ---
@@ -212,36 +210,10 @@ case-study/
 │   ├── ai_service.py        # AI-powered suggestions with structured output
 │   ├── scorer.py            # Sustainability scoring logic
 │   └── storage.py           # Data storage layer
-├── routes/
-│   ├── score_routes.py      # Score calculation endpoints
-│   ├── history_routes.py    # Historical data endpoints
-│   └── summary_routes.py    # Analytics and summary endpoints
-└── tests/
-    ├── test_api.py          # API integration tests
-    ├── test_ai_service.py   # AI service unit tests
-    ├── test_scorer.py       # Scoring logic tests
-    └── test_integration.py  # End-to-end integration tests
-```
-
----
-
-## Testing
-
-Run the complete test suite:
-```bash
-python -m pytest tests/ -v
-```
-
-Run specific test categories:
-```bash
-# API endpoint tests
-python -m pytest tests/test_api.py -v
-
-# AI service tests
-python -m pytest tests/test_ai_service.py -v
-
-# Integration tests
-python -m pytest tests/test_integration.py -v
+└── routes/
+    ├── score_routes.py      # Score calculation endpoints
+    ├── history_routes.py    # Historical data endpoints
+    └── summary_routes.py    # Analytics and summary endpoints
 ```
 
 ---

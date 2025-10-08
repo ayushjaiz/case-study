@@ -119,7 +119,6 @@ dmypy.json
 .pyre/
 
 # IDE
-.vscode/
 .idea/
 *.swp
 *.swo
@@ -139,3 +138,7 @@ Thumbs.db
 *.sqlite
 logs/
 temp/
+branch_structure.json
+temp_auto_push.bat
+temp_interactive_push.bat
+.gitignore
